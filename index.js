@@ -53,9 +53,6 @@ function getMountainProjectResults(latitude, longitude) {
     console.log(url);
     $.ajax({
         url: url,
-        type: 'Get',
-        cors: true,
-        dataType: 'jsonp',
         'success': function(data) {
             console.log(data);
             displayMountainProjectResults(data);},
@@ -66,10 +63,20 @@ function getMountainProjectResults(latitude, longitude) {
 }
 
 function displayMountainProjectResults(data) {
+    $('#results').empty();
+    for (let i = 0; i < data.routes.length; i++) {
     $('#results').append(
-        `<ul class='resultsHead'>
-          <li id='resultsDate'>Change in snow${data[0].data[0]['Change In Snow Depth (in)']}</li>`
-    );
+      `<div class='results'>
+         <h2>${data.routes[i].name}</h2>
+         <ul>
+           Route Type: <li>${data.routes[i].type}</li>
+           Difficulty Rating: <li>${data.routes[i].rating}</li>
+           Number of Pitches: <li>${data.routes[i].pitches}</li>
+           number of stars: <li>${data.routes[i].stars}</li>
+           <li><a href='${data.routes[i].url}'>Link to route description</a></li>
+         </ul>
+        </div>`
+    )};
 }
 
 function watchForm() {
