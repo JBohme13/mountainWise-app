@@ -1,8 +1,7 @@
 const geoCodeApiUrl = 'https://api.opencagedata.com/geocode/v1/json';
 const geoCodeApiKey = 'a79f57d2a77e4fd7a5022bc1023ba585'
-const elevationsApiUrl = 'https://maps.googleapis.com/maps/api/elevation/json';
-const openElevstionUrl = 'https://api.open-elevation.com/api/v1/lookup';
-const powderLinesUrl = 'http://api.powderlin.es/closest_stations';
+const mountainProjectUrl = 'https://www.mountainproject.com/data/get-routes-for-lat-lon';
+const mountainProjectsKey = '200466049-f8c171f382cea89355d4df08f9176c10';
 
 function geoCodeQueryString(params) {
     const queryItems = Object.keys(params)
@@ -15,87 +14,62 @@ function getGeoCodeResults() {
     const params = {
         q: searchValue,
         key: geoCodeApiKey,
-        jsonp
     };
     queryString = geoCodeQueryString(params);
     const url = geoCodeApiUrl + '?' + queryString;
     console.log(url);
-    fetch(url)
-    .then(response => { 
-        if (response.ok) {
-            return response.json();
-        } throw new Error(response.statusText)})
-    .then(responseJson => {
-        console.log(responseJson);
-        const latitude = responseJson.results[0].geometry.lat;
-        const longitude = responseJson.results[0].geometry.lng;
-        getPowderLinesResults(latitude, longitude);
-        getElevationResults(latitude, longitude);})
-    .catch(error => {
-        $('.errorMessage').text(`Something went wrong: ${error.message}`);
-        });
+    $.ajax({
+        url: url,
+        type: 'Get',
+        cors: true,
+        dataType: 'jsonp',
+        'success': function(data) {
+            console.log(data);
+            const latitude = data.results[0].geometry.lat;
+            const longitude = data.results[0].geometry.lng;
+            getMountainProjectResults(latitude, longitude);},
+        'error': (error => {
+            $('.errorMessage').text(`Something went wrong: ${error.message}`);
+            })});
 }
 
-function elevationsQueryString(params) {
-    const queryItems = Object.keys(params)
-      .map(key => `${key}=${params[key]}`)
-    return queryItems.join('&');
-}
-
-function getElevationResults(latitude, longitude) {
-    const params = {
-        locations: latitude + ',' + longitude,
-    };
-    queryString = elevationsQueryString(params);
-    const url = openElevationUrl + '?' + queryString;
-    console.log(url);
-    fetch(url)
-    .then(response => {
-        if(response.ok) {
-            return response.json();
-        } throw new Error(response.statusText)})
-    .then(responseJson => {
-        console.log(responseJson);
-        displayElevationsResults(responseJson);})
-    .catch(error => {
-        $('.errorMessage').text(`Something went wrong: ${error.message}`);
-    })
-}
-
-function powderLinesQueryString(params){
+function mountainProjectQueryString(params){
     const queryItems = Object.keys(params)
       .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     return queryItems.join('&');
 }
 
-function getPowderLinesResults(latitude, longitude) {
+function getMountainProjectResults(latitude, longitude) {
     const params= {
+        key: mountainProjectsKey,
         lat: latitude,
-        lng: longitude,
-        data: true
+        lon: longitude,
+        maxDistance: `${$('#maxDistance').val()}`,
+        minDiff: `${$('#minDiff').val()}`,
+        maxDiff: `${$('#maxDiff').val()}`
     };
-    queryString = powderLinesQueryString(params);
-    const url = powderLinesUrl + '?' + queryString;
+    queryString = mountainProjectQueryString(params);
+    const url = mountainProjectUrl + '?' + queryString;
     console.log(url);
-    fetch(url, {mode: 'no-cors'})
-    .then(response => {
-        if(response.ok) {
-            return response.json();
-        } throw new Error(response.statusText)})
-    .then(responseJson => {
-        console.log(responseJson);
-        displayPowderLinesResults(responseJson);})
-    .catch(error => {
-        $('.errorMessage').text(`Something went wrong: ${error.message}`)
+    $.ajax({
+        url: url,
+        type: 'Get',
+        cors: true,
+        dataType: 'jsonp',
+        'success': function(data) {
+            console.log(data);
+            displayMountainProjectResults(data);},
+        'error': (error => {
+            $('.errorMessage').text(`Something went wrong: ${error.message}`)
+        })
     })
 }
 
-function displayPowderLinesResults(responseJson) {
-    //display results from PowderLines in new page to be selected by user
-}
-
-function displayElevationsResults(responseJson) {
-    //
+function displayMountainProjectResults(data) {
+    $('#results').append(
+        `<ul class='resultsHead'>
+          <li id='resultsDate'>Change in snow${data[0].data[0]['Change In Snow Depth (in)']}</li>`
+    );
 }
 
 function watchForm() {
