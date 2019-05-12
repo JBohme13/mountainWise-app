@@ -2,8 +2,8 @@
     <head>
         <meta charSet='UTF-8'>
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title>Mountain Wise | Take Life to New Heights</title>
-        <link src='main.css'>
+        <title>Route Finder | Find your way to the closest crag</title>
+        <link rel='stylesheet' href='main.css'>
         <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css">
         <script src="https://js.arcgis.com/4.11/"></script>
         <script src="https://code.jquery.com/jquery-3.4.0.js" 
@@ -12,10 +12,10 @@
         
     </head>
     <body>
-        <h1>Mountain Wise</h1>
+        <h1>Route Finder</h1>
         <form id='searchForm'>
             <label for='searchInput'>Search: </label>
-            <input id='searchInput' class='textInput'type='text' placeholder='(i.e. Mt. Shasta, Wilson Peak, Chicago Basin)' required>
+            <input id='searchInput' class='textInput'type='text' placeholder='(i.e. Eldorado Canyon)' required>
             <label for='maxDistance'>Maximum Distance (mi.)</label>
             <input id='maxDistance' class='textInput' type='text'placeholder='15'>
             <label for='minDiff'>Minimum Difficulty</label>
@@ -24,10 +24,11 @@
             <input id='maxDiff' class='textInput' type='text' placeholder='5.13'>
             <input id='submitButton' type='submit' name='Search'>
         </form>
+        <button id='newSearchButton' type='button'>New Search</button>
         <p class='errorMessage'></p>
-        <div id="map"></div>
-        <section id='results'>
-            <div id='mapResults'></div>
+        <section class='resultsSection'>
+            <div id='newSearchButton'></div>
+            <div id='results'></div>
         </section>
         <script src='index.js'></script>
     </body>

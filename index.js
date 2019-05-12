@@ -63,20 +63,31 @@ function getMountainProjectResults(latitude, longitude) {
 }
 
 function displayMountainProjectResults(data) {
-    $('#results').empty();
+   // $('#results').empty();
+    $('form').addClass('searchForm');
+    $('button').addClass('newSearchButton');
     for (let i = 0; i < data.routes.length; i++) {
     $('#results').append(
       `<div class='results'>
          <h2>${data.routes[i].name}</h2>
          <ul>
-           Route Type: <li>${data.routes[i].type}</li>
-           Difficulty Rating: <li>${data.routes[i].rating}</li>
-           Number of Pitches: <li>${data.routes[i].pitches}</li>
-           number of stars: <li>${data.routes[i].stars}</li>
+           <li>Area: ${data.routes[i].location[2]}</li>
+           <li>Route Type: ${data.routes[i].type}</li>
+           <li>Difficulty Rating: ${data.routes[i].rating}</li>
+           <li>Number of Pitches: ${data.routes[i].pitches}</li>
+           <li>number of stars: ${data.routes[i].stars}</li>
            <li><a href='${data.routes[i].url}'>Link to route description</a></li>
          </ul>
         </div>`
     )};
+}
+
+function watchNewSearchButton() {
+    $('button').click(function() {
+        $('form').removeClass('searchForm');
+        $('button').removeClass('newSearchButton');
+        $('#results').empty();
+    });
 }
 
 function watchForm() {
@@ -87,3 +98,4 @@ function watchForm() {
 }
 
 watchForm();
+watchNewSearchButton();
