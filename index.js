@@ -57,41 +57,63 @@ function getMountainProjectResults(latitude, longitude) {
             console.log(data);
             displayMountainProjectResults(data);},
         'error': (error => {
-            $('.errorMessage').text(`Something went wrong: ${error.message}`)
+            $('#errorMessage').text(`Something went wrong: ${error.message}`)
         })
     })
 }
 
 function displayMountainProjectResults(data) {
-   // $('#results').empty();
-    $('form').addClass('searchForm');
+    $('form').slideUp();
     $('button').addClass('newSearchButton');
-    for (let i = 0; i < data.routes.length; i++) {
-    $('#results').append(
-      `<div class='results'>
-         <h2>${data.routes[i].name}</h2>
-         <ul>
-           <li>Area: ${data.routes[i].location[2]}</li>
-           <li>Route Type: ${data.routes[i].type}</li>
-           <li>Difficulty Rating: ${data.routes[i].rating}</li>
-           <li>Number of Pitches: ${data.routes[i].pitches}</li>
-           <li>number of stars: ${data.routes[i].stars}</li>
-           <li><a href='${data.routes[i].url}'>Link to route description</a></li>
+    $('.newSearchButton').slideDown();
+    $('body').addClass('resultsBody');
+    if (data.routes.length <= 0) {
+        $('#errorMessage').addClass('display');
+        $('#errorMessage').append('No results found, try again.')
+    } else if (data.routes.length > 0) {
+      for (let i = 0; i < data.routes.length; i++) {
+        $('#results').append(
+        `<div class='results'>
+         <h2 id='name'>${data.routes[i].name}</h2><br>
+         <img id='img' src=${data.routes[i].imgSmallMed} alt='Photo of climbing route.'>
+         <ul id='resultsData'>
+           <li class='resultsList'>Area: ${data.routes[i].location[2]}</li>
+           <li class='resultsList'>Route Type: ${data.routes[i].type}</li>
+           <li class='resultsList'>Difficulty Rating: ${data.routes[i].rating}</li>
+           <li class='resultsList'>Number of Pitches: ${data.routes[i].pitches}</li>
+           <li class='resultsList'>number of stars: ${data.routes[i].stars}</li>
+           <li class='resultsList'><a href='${data.routes[i].url}'>Link to route description</a></li>
          </ul>
         </div>`
-    )};
+        )};
+    }
+}
+
+function watchMinMax() {
+    $('#submitButton').click(function() {
+        if (document.getElementById('minDiff').value !== '') {
+            $('#maxDiff').attr('required', '');
+        }
+    });
 }
 
 function watchNewSearchButton() {
     $('button').click(function() {
-        $('form').removeClass('searchForm');
+        $('.newsearchButton').slideUp();
+        $('form').slideDown();
         $('button').removeClass('newSearchButton');
+        $('body').removeClass('resultsBody');
+        $('#errorMessage').removeClass('display');
         $('#results').empty();
+        $('#errorMessage').empty();
     });
 }
 
 function watchForm() {
     $('#searchForm').submit(event => {
+        if (document.getElementById('minDiff').value !== '') {
+            $('#maxDiff').attr('required', '');
+        };
         event.preventDefault();
         getGeoCodeResults();
     })
@@ -99,3 +121,4 @@ function watchForm() {
 
 watchForm();
 watchNewSearchButton();
+watchMinMax();

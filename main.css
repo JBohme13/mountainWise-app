@@ -1,8 +1,40 @@
 body {
     box-sizing: border-box;
+    background-image: url(https://wallpapershome.com/images/pages/pic_v/184.jpg);
+    background-repeat: none;
+    background-size: cover;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.resultsBody {
+    background-image: linear-gradient(#c51b1bce, #600668bd);
+}
+
+p {
+    display: none;
+}
+
+.display {
+    display: block;
+    color: rgb(235, 233, 233);
+    font-size: 24px;
+    text-align: center;
+    margin-top: 12%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #89299265;
+    width: 80%;
+    height: 45px;
+    border-radius: 2px;
+    font-size: 20px;
+}
+
+.search {
+    color: rgb(235, 235, 235);
 }
 
 Form {
+    background-color: (0, 0, 0, 0.4);
     position: relative;
     width: 100%;
     display: flex;
@@ -11,43 +43,105 @@ Form {
     justify-content: space-between;
 }
 
+::placeholder {
+    color: rgb(187, 187, 187);
+}
+
+#searchInput {
+    background-color: #92292965;
+}
+
+#maxDistance {
+    background-color: #92293b65;
+}
+
+#minDiff {
+    background-color: #92296665;
+}
+
+#maxDiff{
+    background-color: #89299265;
+}
+#submitButton {
+    height: 45px;
+    width: 300px;
+    box-shadow: 3px, 3px, #66666655;
+    background-color: #57299285;
+    color: rgb(235, 235, 235);
+    border: 1px solid rgb(16, 26, 43);
+    border-radius: 2px;
+    margin: 15px;
+    font-size: 24px;
+    font-weight: lighter;
+}
+
+#submitButton:hover {
+    background-color: #1b478877;
+    cursor: pointer;
+}
+
 h1 {
+    font-family: 'Exo 2', sans-serif;
+    background-color: (0, 0, 0, 0.4);
     margin-top: 30px;
     margin-bottom: 30px;
     margin-left: 30px;
     font-size: 36px;
-}
-
-label {
-    font-size: 20px;
+    font-weight: bold;
 }
 
 .textInput {
     height: 45px;
     width: 300px;
-    border: 1px dashed grey;
+    border: 1px solid rgb(16, 26, 43);
+    border-radius: 2px;
     margin: 15px;
     font-size: 20px;
-}
-
-ul {
-    list-style: none;
-    margin-top: 5px;
-    margin-Bottom: 5px;
-    margin-left: 30px;
-}
-
-li {
-    width: 25%;
+    background-color: #92294365;
+    color: rgb(235, 235, 235);
+    font-weight: lighter;
 }
 
 .results {
-    position: relative;
-    top: 30px;
+    width: 100%;
+    background-color: #33165a41;
+    color: #f8f8f8;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
-.searchForm {
-    display: none;
+#resultsData {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+}
+
+a {
+    color: rgb(79, 45, 156);
+}
+
+a:hover {
+    color: #1de21d;
+    cursor: pointer;
+}
+
+#name {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 32px;
+    line-height: 36px;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 10%;
+}
+
+.resultsList {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: lighter;
 }
 
 button {
@@ -57,10 +151,109 @@ button {
 .newSearchButton {
     display: flex;
     position: relative;
-    margin-left: 30px;
-    border: 1px dashed grey;
+    height: 45px;
+    width: 300px;
+    box-shadow: 3px, 3px, #66666655;
+    background-color: #57299285;
+    color: rgb(235, 235, 235);
+    border: 1px solid rgb(16, 26, 43);
+    border-radius: 2px;
+    font-size: 24px;
+    font-weight: lighter;
+    text-align: center;
 }
 
-.resultsSection {
-    margin-left: 30px;
+.newSearchButton:hover {
+    background-color: #206ada77;
+    cursor: pointer;
 }
+
+@media only screen and (min-width: 480px) {
+    body {
+        background-image: url(https://eloquentnature.files.wordpress.com/2018/11/a7riiiynpoct2018_dsc7580halfdomeface_screensaver.jpg?w=900);
+    }
+
+    .textinput {
+        height: 60px;
+        width: 400px;
+        font-size: 26.66px;
+    }
+
+    #submitbutton {
+        height: 60px;
+        width: 400px;
+        font-size: 32px;
+    }
+
+    h1 {
+        font-size: 48px;
+    }
+
+    .display {
+        height: 60px;
+        font-size: 26.66px;
+    }
+}
+
+@media only screen and (min-width: 760px) {
+    body {
+        background-image: url(https://interfacelift.com/wallpaper/7yz4ma1/03801_glacierpointsunset_1024x1024.jpg);
+    }
+
+    .textinput {
+        height: 75px;
+        width: 500px;
+        font-size: 33.33px;
+    }
+
+    #submitbutton {
+        height: 75px;
+        width: 500px;
+        font-size: 40px;
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    .display {
+        height: 75px;
+        font-size: 33.33px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+  body {
+      background-image: url(https://cdn.shopify.com/s/files/1/2081/7471/articles/Fotolia_Half_Dome_XXL_1600x750.jpg?v=1507091452);
+
+  }
+
+  .textInput {
+      height: 90px;
+      width: 600px;
+      font-size: 40px;
+  }
+
+  #submitButton {
+      height: 90px;
+      width: 600px;
+      font-size: 48px;
+  }
+
+  h1 {
+      font-size: 72px;
+  }
+
+  .display {
+      height: 90px;
+      font-size: 40px;
+  }
+
+  #name {
+      font-size: 36px;
+  }
+
+  .resultsList {
+      font-size: 20px;
+  }
+} 
