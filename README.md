@@ -1,5 +1,5 @@
 # routeFinder-app
-an app for finding the nearest rock climbing routes - Users Come to the site to quickly and easily find the most accessable climbing to their location by making a quick search using the search form, and viewing results on the following page.  in addition, users can look up additional information about rock climbing routes by clicking the provided link.
+an app for finding the nearest rock climbing routes - Users Come to the site to quickly and easily find the most accessable climbing to their location by making a quick search using the search form, and viewing results on the following page.  in addition, users can look up additional information about rock climbing routes by clicking the provided link for each route.
 
 Live app: https://jbohme13.github.io/routeFinder-app/
 
