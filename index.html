@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang='en'>
     <head>
         <meta charSet='UTF-8'>
@@ -7,24 +8,24 @@
         <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css">
         <script src="https://js.arcgis.com/4.11/"></script>
         <script src="https://code.jquery.com/jquery-3.4.0.js" 
-        integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" 
-        crossorigin="anonymous"></script>
+          integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" 
+          crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Exo+2|Quicksand" rel="stylesheet">
     </head>
     <body>
         <section class='search'>
-          <h1>Route Finder</h1>
-          <form id='searchForm'>
-            <label for='searchInput'></label>
-            <input id='searchInput' class='textInput'type='text' placeholder='Search (i.e. Eldorado Canyon)' required>
-            <label for='maxDistance'></label>
-            <input id='maxDistance' class='textInput' type='text'placeholder='Maximum Distance (mi.)' data-value='50'>
-            <label for='minDiff'></label>
-            <input id='minDiff' class='textInput' type='text' placeholder='Minimum Difficulty (5.0)' data-value='5.1'>
-            <label for='maxDiff'></label>
-            <input id='maxDiff' class='textInput' type='text' placeholder='Maximum Difficulty (5.15d)' data-value='5.15d'>
-            <input id='submitButton' type='submit' name='Search'>
-          </form>
+            <h1>Route Finder</h1>
+            <form id='searchForm'>
+              <label for='searchInput'></label>
+              <input id='searchInput' class='textInput'type='text' placeholder='Search (i.e. Eldorado Canyon)' required>
+              <label for='maxDistance'></label>
+              <input id='maxDistance' class='textInput' type='text'placeholder='Maximum Distance (mi.)' data-value='50'>
+              <label for='minDiff'></label>
+              <input id='minDiff' class='textInput' type='text' placeholder='Minimum Difficulty (5.0)' data-value='5.1'>
+              <label for='maxDiff'></label>
+              <input id='maxDiff' class='textInput' type='text' placeholder='Maximum Difficulty (5.15d)' data-value='5.15d'>
+              <input id='submitButton' type='submit' name='Search'>
+            </form>
         </section>
         <button id='newSearchButton' type='button'>New Search</button>
         <p id='errorMessage'></p>

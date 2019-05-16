@@ -10,6 +10,7 @@ function geoCodeQueryString(params) {
 }
 
 function getGeoCodeResults() {
+    // get coordinates for search address provided and feeds it to the Data API
     const searchValue = $('#searchInput').val();
     const params = {
         q: searchValue,
@@ -17,20 +18,19 @@ function getGeoCodeResults() {
     };
     queryString = geoCodeQueryString(params);
     const url = geoCodeApiUrl + '?' + queryString;
-    console.log(url);
     $.ajax({
         url: url,
         type: 'Get',
         cors: true,
         dataType: 'jsonp',
         'success': function(data) {
-            console.log(data);
             const latitude = data.results[0].geometry.lat;
             const longitude = data.results[0].geometry.lng;
             getMountainProjectResults(latitude, longitude);},
         'error': (error => {
             $('.errorMessage').text(`Something went wrong: ${error.message}`);
-            })});
+        })
+    });
 }
 
 function mountainProjectQueryString(params){
@@ -40,6 +40,7 @@ function mountainProjectQueryString(params){
 }
 
 function getMountainProjectResults(latitude, longitude) {
+    // Takes coordinates and returns relevant results
     const params= {
         key: mountainProjectsKey,
         lat: latitude,
@@ -50,19 +51,18 @@ function getMountainProjectResults(latitude, longitude) {
     };
     queryString = mountainProjectQueryString(params);
     const url = mountainProjectUrl + '?' + queryString;
-    console.log(url);
     $.ajax({
         url: url,
         'success': function(data) {
-            console.log(data);
             displayMountainProjectResults(data);},
         'error': (error => {
             $('#errorMessage').text(`Something went wrong: ${error.message}`)
         })
-    })
+    });
 }
 
 function displayMountainProjectResults(data) {
+    // Takes resulting array and displayes relevant information.
     $('form').slideUp();
     $('button').addClass('newSearchButton');
     $('.newSearchButton').slideDown();
@@ -90,6 +90,10 @@ function displayMountainProjectResults(data) {
 }
 
 function watchMinMax() {
+    // With the Mountain Project API, when a user sets a min difficulty
+    // with no max difficulty, no results are returned.
+    // This function watches for user inputs in min difficulty and requires 
+    //  Max difficulty if a value is provided for min difficulty.
     $('#submitButton').click(function() {
         if (document.getElementById('minDiff').value !== '') {
             $('#maxDiff').attr('required', '');
@@ -98,12 +102,15 @@ function watchMinMax() {
 }
 
 function watchNewSearchButton() {
+    // full search reset so a user making a second search has the same experience
+    // as a user making their first search.
     $('button').click(function() {
         $('.newsearchButton').slideUp();
         $('form').slideDown();
         $('button').removeClass('newSearchButton');
         $('body').removeClass('resultsBody');
         $('#errorMessage').removeClass('display');
+        $('#maxDiff').removeAttr('required');
         $('#results').empty();
         $('#errorMessage').empty();
     });
@@ -111,9 +118,6 @@ function watchNewSearchButton() {
 
 function watchForm() {
     $('#searchForm').submit(event => {
-        if (document.getElementById('minDiff').value !== '') {
-            $('#maxDiff').attr('required', '');
-        };
         event.preventDefault();
         getGeoCodeResults();
     })
