@@ -1,13 +1,18 @@
+html {
+    height: 100%;
+    background-image: url(https://wallpapershome.com/images/pages/pic_v/184.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 body {
     box-sizing: border-box;
-    background-image: url(https://wallpapershome.com/images/pages/pic_v/184.jpg);
-    background-repeat: none;
-    background-size: cover;
     font-family: 'Quicksand', sans-serif;
 }
 
 .resultsBody {
-    background-image: linear-gradient(#c51b1bce, #600668bd);
+    background-image: linear-gradient(#c51b1bce, #600668bd, #c51b1bce);
+    background-repeat: repeat;
 }
 
 p {
@@ -22,7 +27,8 @@ p {
     margin-top: 12%;
     margin-left: auto;
     margin-right: auto;
-    background-color: #89299265;
+    background-color: #89299200;
+    height: auto;
     width: 80%;
     height: 45px;
     border-radius: 2px;
@@ -151,8 +157,10 @@ button {
 .newSearchButton {
     display: flex;
     position: relative;
+    left: 15px;
     height: 45px;
     width: 300px;
+    margin-left: 25px;
     box-shadow: 3px, 3px, #66666655;
     background-color: #57299285;
     color: rgb(235, 235, 235);
@@ -169,17 +177,17 @@ button {
 }
 
 @media only screen and (min-width: 480px) {
-    body {
+    html {
         background-image: url(https://eloquentnature.files.wordpress.com/2018/11/a7riiiynpoct2018_dsc7580halfdomeface_screensaver.jpg?w=900);
     }
 
-    .textinput {
+    .textInput {
         height: 60px;
         width: 400px;
         font-size: 26.66px;
     }
 
-    #submitbutton {
+    #submitButton {
         height: 60px;
         width: 400px;
         font-size: 32px;
@@ -196,17 +204,17 @@ button {
 }
 
 @media only screen and (min-width: 760px) {
-    body {
+    html {
         background-image: url(https://interfacelift.com/wallpaper/7yz4ma1/03801_glacierpointsunset_1024x1024.jpg);
     }
 
-    .textinput {
+    .textInput {
         height: 75px;
         width: 500px;
         font-size: 33.33px;
     }
 
-    #submitbutton {
+    #submitButton {
         height: 75px;
         width: 500px;
         font-size: 40px;
@@ -223,9 +231,8 @@ button {
 }
 
 @media only screen and (min-width: 1024px) {
-  body {
+  html {
       background-image: url(https://cdn.shopify.com/s/files/1/2081/7471/articles/Fotolia_Half_Dome_XXL_1600x750.jpg?v=1507091452);
-
   }
 
   .textInput {

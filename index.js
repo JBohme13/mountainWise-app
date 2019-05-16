@@ -66,7 +66,7 @@ function displayMountainProjectResults(data) {
     $('form').slideUp();
     $('button').addClass('newSearchButton');
     $('.newSearchButton').slideDown();
-    $('body').addClass('resultsBody');
+    $('html').addClass('resultsBody');
     if (data.routes.length <= 0) {
         $('#errorMessage').addClass('display');
         $('#errorMessage').append('No results found, try again.')
@@ -108,7 +108,7 @@ function watchNewSearchButton() {
         $('.newsearchButton').slideUp();
         $('form').slideDown();
         $('button').removeClass('newSearchButton');
-        $('body').removeClass('resultsBody');
+        $('html').removeClass('resultsBody');
         $('#errorMessage').removeClass('display');
         $('#maxDiff').removeAttr('required');
         $('#results').empty();
