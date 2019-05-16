@@ -4,7 +4,8 @@ an app for finding the nearest rock climbing routes
 Live app: https://jbohme13.github.io/routeFinder-app/
 
 Home screen:
-
+<img src='rfHome1.png'>
+<img src='rfHome4.png'>
 Search for mapped natural feature, city, or address.  add optional search parameters; max distance from searched address, minimum difficulty of routes shown, and Maximum difficulty of routes showm.  When all search parameters are set, hit submit for results.
 
 Results screen:
