@@ -15,7 +15,7 @@ results are oriented from closest to farthest from search location.  scroll down
 No results screen: 
 <img src='rfResults5.png'>
 
-If your search yeilds no results, a message will display Telling there are no results and to please try again.
+If your search yields no results, a message will display Telling there are no results and to please try again.
 
 Technology used:
 - HTML5
