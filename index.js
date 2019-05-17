@@ -63,8 +63,10 @@ function getMountainProjectResults(latitude, longitude) {
     $.ajax({
         url: url,
         'success': function(data) {
+            console.log(data);
             displayMountainProjectResults(data);},
         'error': (error => {
+            $('#errorMessage').addClass('display');
             $('#errorMessage').text(`Something went wrong: ${error.message}`)
         })
     });
@@ -80,10 +82,15 @@ function displayMountainProjectResults(data) {
         $('#errorMessage').append('No results found, try again.')
     } else if (data.routes.length > 0) {
       for (let i = 0; i < data.routes.length; i++) {
+        if (data.routes[i].imgSmallMed !== "") {
+            image = data.routes[i].imgSmallMed;
+        } else if (data.routes[i].imgSmallMed === "") {
+            image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8O73KMbh8PM_B2E_pRJjIhE9n7ng71l2F_DvZZ4oswQdpopiO';
+        };
         $('#results').append(
         `<div class='results'>
          <h2 id='name'>${data.routes[i].name}</h2><br>
-         <img id='img' src=${data.routes[i].imgSmallMed} alt='Photo of climbing route.'>
+         <img id='img' src=${image} alt='Photo of climbing route.'>
          <ul id='resultsData'>
            <li class='resultsList'>Area: ${data.routes[i].location[2]}</li>
            <li class='resultsList'>Route Type: ${data.routes[i].type}</li>
