@@ -10,7 +10,6 @@ function geoCodeQueryString(params) {
 }
 
 function getGeoCodeResults() {
-    // get coordinates for search address provided and feeds it to the Data API
     const searchValue = $('#searchInput').val();
     const params = {
         q: searchValue,
@@ -24,11 +23,22 @@ function getGeoCodeResults() {
         cors: true,
         dataType: 'jsonp',
         'success': function(data) {
+            if (data.results.length <= 0) {
+                $('form').slideUp();
+                $('button').addClass('newSearchButton');
+                $('.newSearchButton').slideDown();
+                $('html').addClass('resultsBody');
+                $('#errorMessage').addClass('display');
+                $('#errorMessage').text('Something went wrong, please try again.')
+            } else {
             const latitude = data.results[0].geometry.lat;
             const longitude = data.results[0].geometry.lng;
-            getMountainProjectResults(latitude, longitude);},
+            getMountainProjectResults(latitude, longitude);
+            }
+        },
         'error': (error => {
-            $('.errorMessage').text(`Something went wrong: ${error.message}`);
+            $('#errorMessage').addClass('display');
+            $('#errorMessage').text(`Something went wrong: ${error.message}`);
         })
     });
 }
@@ -40,7 +50,6 @@ function mountainProjectQueryString(params){
 }
 
 function getMountainProjectResults(latitude, longitude) {
-    // Takes coordinates and returns relevant results
     const params= {
         key: mountainProjectsKey,
         lat: latitude,
@@ -62,7 +71,6 @@ function getMountainProjectResults(latitude, longitude) {
 }
 
 function displayMountainProjectResults(data) {
-    // Takes resulting array and displayes relevant information.
     $('form').slideUp();
     $('button').addClass('newSearchButton');
     $('.newSearchButton').slideDown();
@@ -102,8 +110,6 @@ function watchMinMax() {
 }
 
 function watchNewSearchButton() {
-    // full search reset so a user making a second search has the same experience
-    // as a user making their first search.
     $('button').click(function() {
         $('.newsearchButton').slideUp();
         $('form').slideDown();

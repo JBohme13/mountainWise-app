@@ -13,8 +13,9 @@
         <link href="https://fonts.googleapis.com/css?family=Exo+2|Quicksand" rel="stylesheet">
     </head>
     <body>
-        <section class='search'>
-          <h1>Route Finder</h1>
+      <main>
+        <section role='contentinfo' class='search'>
+          <h1>Route Finder <br><span id='titleSpan'>| Find your way to the closest crag |</span></h1>
           <form id='searchForm'>
             <label for='searchInput'></label>
             <input id='searchInput' class='textInput'type='text' placeholder='Search (i.e. Eldorado Canyon)' required>
@@ -29,10 +30,11 @@
         </section>
         <button id='newSearchButton' type='button'>New Search</button>
         <p id='errorMessage'></p>
-        <section class='resultsSection'>
+        <section role='contentinfo' class='resultsSection'>
             <div id='newSearchButton'></div>
-            <div id='results'></div>
+            <div id='results' aria-live='polite'></div>
         </section>
+      </main>
         <script src='index.js'></script>
     </body>
 </html>
