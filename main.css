@@ -96,7 +96,7 @@ h1 {
     font-weight: bold;
 }
 
-#titleSpan {
+.titleSpan {
     font-size: 20px;
 }
 
@@ -201,7 +201,7 @@ button {
         font-size: 48px;
     }
 
-    #titleSpan {
+    .titleSpan {
         font-size: 26.66px;
     }
 
@@ -232,7 +232,7 @@ button {
         font-size: 60px;
     }
 
-    #titleSpan {
+    .titleSpan {
         font-size: 33.33px;
     }
 
@@ -242,7 +242,7 @@ button {
     }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1224px) {
   html {
       background-image: url(https://cdn.shopify.com/s/files/1/2081/7471/articles/Fotolia_Half_Dome_XXL_1600x750.jpg?v=1507091452);
   }
@@ -263,7 +263,7 @@ button {
       font-size: 72px;
   }
 
-  #titleSpan {
+  .titleSpan {
       font-size: 40px;
   }
 
