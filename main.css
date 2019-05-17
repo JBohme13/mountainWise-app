@@ -54,25 +54,25 @@ Form {
 }
 
 #searchInput {
-    background-color: #92292965;
+    background-color: #9229299d;
 }
 
 #maxDistance {
-    background-color: #92293b65;
+    background-color: #92293b9d;
 }
 
 #minDiff {
-    background-color: #92296665;
+    background-color: #9229669d;
 }
 
 #maxDiff{
-    background-color: #89299265;
+    background-color: #8929929d;
 }
 #submitButton {
     height: 45px;
     width: 300px;
     box-shadow: 3px, 3px, #66666655;
-    background-color: #57299285;
+    background-color: #5729929d;
     color: rgb(235, 235, 235);
     border: 1px solid rgb(16, 26, 43);
     border-radius: 2px;
