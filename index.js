@@ -136,6 +136,16 @@ function watchForm() {
     })
 }
 
+function watchContinueButton() {
+    $('#continueButton').click(event => {
+        $('form').removeClass('hidden');
+        $('form').slideDown();
+        $('#landingPage').slideUp();
+    })
+}
+
 watchForm();
 watchNewSearchButton();
 watchMinMax();
+watchContinueButton();
+$('form').addClass('hidden');
