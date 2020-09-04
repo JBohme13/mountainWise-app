@@ -39,31 +39,6 @@ function getGeoCodeResults() {
         $('#errorMessage').addClass('display');
         $('#errorMessage').text(`Something went wrong: ${error.message}`);
     });
-   /* $.ajax({
-        url: url,
-        type: 'Get',
-        cors: true,
-        dataType: 'jsonp',
-        content-type: application/json
-        'success': function(data) {
-            if (data.results.length <= 0) {
-                $('form').slideUp();
-                $('button').addClass('newSearchButton');
-                $('.newSearchButton').slideDown();
-                $('html').addClass('resultsBody');
-                $('#errorMessage').addClass('display');
-                $('#errorMessage').text('Something went wrong, please try again.')
-            } else {
-            const latitude = data.results[0].geometry.lat;
-            const longitude = data.results[0].geometry.lng;
-            getMountainProjectResults(latitude, longitude);
-            }
-        },
-        'error': (error => {
-            $('#errorMessage').addClass('display');
-            $('#errorMessage').text(`Something went wrong: ${error.message}`);
-        })
-    });*/
 }
 
 function mountainProjectQueryString(params){
