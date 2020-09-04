@@ -1,5 +1,5 @@
-const geoCodeApiUrl = 'https://api.opencagedata.com/geocode/v1/json';
-const geoCodeApiKey = 'a79f57d2a77e4fd7a5022bc1023ba585'
+const geoCodeApiUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
+const geoCodeApiKey = 'AIzaSyD3Roxqxj05D5um1Or-TT1QoMRJ_U0VJVU'
 const mountainProjectUrl = 'https://www.mountainproject.com/data/get-routes-for-lat-lon';
 const mountainProjectsKey = '200466049-f8c171f382cea89355d4df08f9176c10';
 
@@ -12,16 +12,39 @@ function geoCodeQueryString(params) {
 function getGeoCodeResults() {
     const searchValue = $('#searchInput').val();
     const params = {
-        q: searchValue,
+        address: searchValue,
         key: geoCodeApiKey,
     };
-    queryString = geoCodeQueryString(params);
-    const url = geoCodeApiUrl + '?' + queryString;
-    $.ajax({
+    const queryString = geoCodeQueryString(params);
+    console.log(queryString);
+    const url = geoCodeApiUrl + `?` + queryString;
+    console.log(url);
+    fetch(`${url}`, {
+    }).then(res => res.json())
+    .then(data => {
+        console.log(data);
+        if (data.results.length <= 0) {
+            $('form').slideUp();
+            $('button').addClass('newSearchButton');
+            $('.newSearchButton').slideDown();
+            $('html').addClass('resultsBody');
+            $('#errorMessage').addClass('display');
+            $('#errorMessage').text('Something went wrong, please try again.')
+        } else {
+        const latitude = data.results[0].geometry.location.lat;
+        const longitude = data.results[0].geometry.location.lng;
+        getMountainProjectResults(latitude, longitude);
+        }
+    }).catch(error => {
+        $('#errorMessage').addClass('display');
+        $('#errorMessage').text(`Something went wrong: ${error.message}`);
+    });
+   /* $.ajax({
         url: url,
         type: 'Get',
         cors: true,
         dataType: 'jsonp',
+        content-type: application/json
         'success': function(data) {
             if (data.results.length <= 0) {
                 $('form').slideUp();
@@ -40,7 +63,7 @@ function getGeoCodeResults() {
             $('#errorMessage').addClass('display');
             $('#errorMessage').text(`Something went wrong: ${error.message}`);
         })
-    });
+    });*/
 }
 
 function mountainProjectQueryString(params){
