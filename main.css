@@ -162,7 +162,7 @@ button {
     position: relative;
     left: 15px;
     height: 45px;
-    width: 135px;
+    width: 150px;
     margin-left: 25px;
     background-color: #57299285;
     color: rgb(235, 235, 235);
@@ -181,7 +181,7 @@ button {
 #continueButton {
     display: block;
     height: 45px;
-    width: 104px;
+    width: 150px;
     background-color: #57299285;
     color: rgb(235, 235, 235);
     border: 1px solid rgb(16, 26, 43);
