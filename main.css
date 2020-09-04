@@ -197,6 +197,7 @@ button {
 #continueButton:hover {
     background-color: #206ada77;
     cursor: pointer;
+    width: 200px;
 }
 
 #descriptionHeader {
